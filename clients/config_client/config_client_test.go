@@ -2,16 +2,17 @@ package config_client
 
 import (
 	"fmt"
+	"net/http"
+	"testing"
+	"time"
+
 	"github.com/golang/mock/gomock"
+	"github.com/stretchr/testify/assert"
 	"github.com/uugtv/nacos-sdk-go/clients/nacos_client"
 	"github.com/uugtv/nacos-sdk-go/common/constant"
 	"github.com/uugtv/nacos-sdk-go/common/http_agent"
 	"github.com/uugtv/nacos-sdk-go/mock"
 	"github.com/uugtv/nacos-sdk-go/vo"
-	"github.com/stretchr/testify/assert"
-	"net/http"
-	"testing"
-	"time"
 )
 
 /**

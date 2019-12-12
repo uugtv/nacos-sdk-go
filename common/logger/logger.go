@@ -1,12 +1,12 @@
 package logger
 
 import (
-	"github.com/lestrrat/go-file-rotatelogs"
-	"github.com/uugtv/nacos-sdk-go/common/util"
-	"log"
 	"os"
 	"path/filepath"
 	"time"
+
+	"github.com/lestrrat/go-file-rotatelogs"
+	"github.com/uugtv/nacos-sdk-go/common/util"
 )
 
 func InitLog(logDir string) error {
@@ -19,7 +19,7 @@ func InitLog(logDir string) error {
 	if err != nil {
 		return err
 	}
-	log.SetOutput(rl)
-	log.SetFlags(log.LstdFlags)
+	// log.SetOutput(rl)
+	// log.SetFlags(log.LstdFlags)
 	return nil
 }

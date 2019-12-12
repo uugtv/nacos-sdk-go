@@ -2,13 +2,14 @@ package config_client
 
 import (
 	"errors"
+	"net/http"
+	"strings"
+
 	"github.com/uugtv/nacos-sdk-go/common/constant"
 	"github.com/uugtv/nacos-sdk-go/common/http_agent"
 	"github.com/uugtv/nacos-sdk-go/common/nacos_server"
 	"github.com/uugtv/nacos-sdk-go/common/util"
 	"github.com/uugtv/nacos-sdk-go/vo"
-	"net/http"
-	"strings"
 )
 
 type ConfigProxy struct {

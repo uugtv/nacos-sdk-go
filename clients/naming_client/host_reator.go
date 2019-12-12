@@ -2,13 +2,13 @@ package naming_client
 
 import (
 	"encoding/json"
+	"reflect"
+	"time"
+
+	nsema "github.com/toolkits/concurrent/semaphore"
 	"github.com/uugtv/nacos-sdk-go/clients/cache"
 	"github.com/uugtv/nacos-sdk-go/model"
 	"github.com/uugtv/nacos-sdk-go/utils"
-	nsema "github.com/toolkits/concurrent/semaphore"
-	"log"
-	"reflect"
-	"time"
 )
 
 type HostReactor struct {
@@ -67,15 +67,15 @@ func (hr *HostReactor) ProcessServiceJson(result string) {
 	if ok && !hr.updateCacheWhenEmpty {
 		//if instance list is empty,not to update cache
 		if service.Hosts == nil || len(service.Hosts) == 0 {
-			log.Printf("[ERROR]:do not have useful host, ignore it, name:%s \n", service.Name)
+			// log.Printf("[ERROR]:do not have useful host, ignore it, name:%s \n", service.Name)
 			return
 		}
 	}
 	if !ok || ok && !reflect.DeepEqual(service.Hosts, oldDomain.(model.Service).Hosts) {
 		if !ok {
-			log.Println("[INFO] service not found in cache " + cacheKey)
+			// log.Println("[INFO] service not found in cache " + cacheKey)
 		} else {
-			log.Printf("[INFO] service key:%s was updated to:%s \n", cacheKey, utils.ToJsonString(service))
+			// log.Printf("[INFO] service key:%s was updated to:%s \n", cacheKey, utils.ToJsonString(service))
 		}
 		cache.WriteServicesToFile(*service, hr.cacheDir)
 		hr.subCallback.ServiceChanged(service)
@@ -100,18 +100,18 @@ func (hr *HostReactor) GetServiceInfo(serviceName string, clusters string) model
 func (hr *HostReactor) GetAllServiceInfo(nameSpace string, groupName string, clusters string) []model.Service {
 	result, err := hr.serviceProxy.GetAllServiceInfoList(nameSpace, groupName, clusters)
 	if err != nil {
-		log.Printf("[ERROR]:query all services info return error!nameSpace:%s cluster:%s groupName:%s  err:%s \n", nameSpace, clusters, groupName, err.Error())
+		// log.Printf("[ERROR]:query all services info return error!nameSpace:%s cluster:%s groupName:%s  err:%s \n", nameSpace, clusters, groupName, err.Error())
 		return nil
 	}
 	if result == "" {
-		log.Printf("[ERROR]:query all services info is empty!nameSpace:%s cluster:%s groupName:%s \n", nameSpace, clusters, groupName)
+		// log.Printf("[ERROR]:query all services info is empty!nameSpace:%s cluster:%s groupName:%s \n", nameSpace, clusters, groupName)
 		return nil
 	}
 
 	var data []model.Service
 	err = json.Unmarshal([]byte(result), &data)
 	if err != nil {
-		log.Printf("[ERROR]: the result of quering all services info json.Unmarshal error !nameSpace:%s cluster:%s groupName:%s \n", nameSpace, clusters, groupName)
+		// log.Printf("[ERROR]: the result of quering all services info json.Unmarshal error !nameSpace:%s cluster:%s groupName:%s \n", nameSpace, clusters, groupName)
 		return nil
 	}
 	return data
@@ -120,11 +120,11 @@ func (hr *HostReactor) GetAllServiceInfo(nameSpace string, groupName string, clu
 func (hr *HostReactor) updateServiceNow(serviceName string, clusters string) {
 	result, err := hr.serviceProxy.QueryList(serviceName, clusters, hr.pushReceiver.port, false)
 	if err != nil {
-		log.Printf("[ERROR]:query list return error!servieName:%s cluster:%s  err:%s \n", serviceName, clusters, err.Error())
+		// log.Printf("[ERROR]:query list return error!servieName:%s cluster:%s  err:%s \n", serviceName, clusters, err.Error())
 		return
 	}
 	if result == "" {
-		log.Printf("[ERROR]:query list is empty!servieName:%s cluster:%s \n", serviceName, clusters)
+		// log.Printf("[ERROR]:query list is empty!servieName:%s cluster:%s \n", serviceName, clusters)
 		return
 	}
 	hr.ProcessServiceJson(result)

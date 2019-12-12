@@ -2,7 +2,11 @@ package naming_client
 
 import (
 	"fmt"
+	"net/http"
+	"testing"
+
 	"github.com/golang/mock/gomock"
+	"github.com/stretchr/testify/assert"
 	"github.com/uugtv/nacos-sdk-go/clients/nacos_client"
 	"github.com/uugtv/nacos-sdk-go/common/constant"
 	"github.com/uugtv/nacos-sdk-go/common/http_agent"
@@ -10,9 +14,6 @@ import (
 	"github.com/uugtv/nacos-sdk-go/model"
 	"github.com/uugtv/nacos-sdk-go/utils"
 	"github.com/uugtv/nacos-sdk-go/vo"
-	"github.com/stretchr/testify/assert"
-	"net/http"
-	"testing"
 )
 
 var clientConfigTest = constant.ClientConfig{
@@ -28,12 +29,12 @@ var serverConfigTest = constant.ServerConfig{
 	ContextPath: "/nacos",
 }
 var headers = map[string][]string{
-	"Client-Version":  []string{constant.CLIENT_VERSION},
-	"User-Agent":      []string{constant.CLIENT_VERSION},
-	"Accept-Encoding": []string{"gzip,deflate,sdch"},
-	"Connection":      []string{"Keep-Alive"},
-	"Request-Module":  []string{"Naming"},
-	"Content-Type":    []string{"application/x-www-form-urlencoded"},
+	"Client-Version":  {constant.CLIENT_VERSION},
+	"User-Agent":      {constant.CLIENT_VERSION},
+	"Accept-Encoding": {"gzip,deflate,sdch"},
+	"Connection":      {"Keep-Alive"},
+	"Request-Module":  {"Naming"},
+	"Content-Type":    {"application/x-www-form-urlencoded"},
 }
 
 func Test_RegisterServiceInstance_withoutGroupeName(t *testing.T) {

@@ -2,7 +2,6 @@ package util
 
 import (
 	"encoding/json"
-	"log"
 	"reflect"
 	"strconv"
 	"strings"
@@ -49,7 +48,7 @@ func TransformObject2Param(object interface{}) (params map[string]string) {
 					if !valueOf.Field(i).IsNil() {
 						bytes, err := json.Marshal(valueOf.Field(i).Interface())
 						if err != nil {
-							log.Println("[TransformObject2Param]", err)
+							// log.Println("[TransformObject2Param]", err)
 						} else {
 							params[tag] = string(bytes)
 						}

@@ -3,14 +3,13 @@ package cache
 import (
 	"encoding/json"
 	"fmt"
+	"io/ioutil"
+	"os"
+
 	"github.com/go-errors/errors"
 	"github.com/uugtv/nacos-sdk-go/common/util"
 	"github.com/uugtv/nacos-sdk-go/model"
 	"github.com/uugtv/nacos-sdk-go/utils"
-	"io/ioutil"
-	"log"
-	"os"
-	"strconv"
 )
 
 func GetFileName(cacheKey string, cacheDir string) string {
@@ -24,7 +23,7 @@ func WriteServicesToFile(service model.Service, cacheDir string) {
 
 	err := ioutil.WriteFile(domFileName, sb, 0666)
 	if err != nil {
-		log.Printf("[ERROR]:faild to write name cache:%s ,value:%s ,err:%s \n", domFileName, string(sb), err.Error())
+		// log.Printf("[ERROR]:faild to write name cache:%s ,value:%s ,err:%s \n", domFileName, string(sb), err.Error())
 	}
 
 }
@@ -32,7 +31,7 @@ func WriteServicesToFile(service model.Service, cacheDir string) {
 func ReadServicesFromFile(cacheDir string) map[string]model.Service {
 	files, err := ioutil.ReadDir(cacheDir)
 	if err != nil {
-		log.Printf("[ERROR]:read cacheDir:%s failed!err:%s \n", cacheDir, err.Error())
+		// log.Printf("[ERROR]:read cacheDir:%s failed!err:%s \n", cacheDir, err.Error())
 		return nil
 	}
 	serviceMap := map[string]model.Service{}
@@ -40,7 +39,7 @@ func ReadServicesFromFile(cacheDir string) map[string]model.Service {
 		fileName := GetFileName(f.Name(), cacheDir)
 		b, err := ioutil.ReadFile(fileName)
 		if err != nil {
-			log.Printf("[ERROR]:failed to read name cache file:%s,err:%s! ", fileName, err.Error())
+			// log.Printf("[ERROR]:failed to read name cache file:%s,err:%s! ", fileName, err.Error())
 			continue
 		}
 
@@ -54,7 +53,7 @@ func ReadServicesFromFile(cacheDir string) map[string]model.Service {
 		serviceMap[f.Name()] = *service
 	}
 
-	log.Printf("finish loading name cache, total: " + strconv.Itoa(len(files)))
+	// log.Printf("finish loading name cache, total: " + strconv.Itoa(len(files)))
 	return serviceMap
 }
 
@@ -63,7 +62,7 @@ func WriteConfigToFile(cacheKey string, cacheDir string, content string) {
 	fileName := GetFileName(cacheKey, cacheDir)
 	err := ioutil.WriteFile(fileName, []byte(content), 0666)
 	if err != nil {
-		log.Printf("[ERROR]:faild to write config  cache:%s ,value:%s ,err:%s \n", fileName, string(content), err.Error())
+		// log.Printf("[ERROR]:faild to write config  cache:%s ,value:%s ,err:%s \n", fileName, string(content), err.Error())
 	}
 }
 
