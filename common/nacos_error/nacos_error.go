@@ -2,7 +2,7 @@ package nacos_error
 
 import (
 	"fmt"
-	"github.com/nacos-group/nacos-sdk-go/common/constant"
+	"github.com/uugtv/nacos-sdk-go/common/constant"
 )
 
 /**

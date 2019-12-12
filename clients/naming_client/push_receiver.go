@@ -2,7 +2,7 @@ package naming_client
 
 import (
 	"encoding/json"
-	"github.com/nacos-group/nacos-sdk-go/utils"
+	"github.com/uugtv/nacos-sdk-go/utils"
 	"log"
 	"math/rand"
 	"net"

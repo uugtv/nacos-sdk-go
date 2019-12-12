@@ -2,11 +2,11 @@ package config_client
 
 import (
 	"errors"
-	"github.com/nacos-group/nacos-sdk-go/common/constant"
-	"github.com/nacos-group/nacos-sdk-go/common/http_agent"
-	"github.com/nacos-group/nacos-sdk-go/common/nacos_server"
-	"github.com/nacos-group/nacos-sdk-go/common/util"
-	"github.com/nacos-group/nacos-sdk-go/vo"
+	"github.com/uugtv/nacos-sdk-go/common/constant"
+	"github.com/uugtv/nacos-sdk-go/common/http_agent"
+	"github.com/uugtv/nacos-sdk-go/common/nacos_server"
+	"github.com/uugtv/nacos-sdk-go/common/util"
+	"github.com/uugtv/nacos-sdk-go/vo"
 	"net/http"
 	"strings"
 )

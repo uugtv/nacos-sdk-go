@@ -1,12 +1,12 @@
 package main
 
 import (
-	"github.com/nacos-group/nacos-sdk-go/clients"
-	"github.com/nacos-group/nacos-sdk-go/common/constant"
-	"github.com/nacos-group/nacos-sdk-go/example"
-	"github.com/nacos-group/nacos-sdk-go/model"
-	"github.com/nacos-group/nacos-sdk-go/utils"
-	"github.com/nacos-group/nacos-sdk-go/vo"
+	"github.com/uugtv/nacos-sdk-go/clients"
+	"github.com/uugtv/nacos-sdk-go/common/constant"
+	"github.com/uugtv/nacos-sdk-go/example"
+	"github.com/uugtv/nacos-sdk-go/model"
+	"github.com/uugtv/nacos-sdk-go/utils"
+	"github.com/uugtv/nacos-sdk-go/vo"
 	"log"
 	"time"
 )
